@@ -1,0 +1,86 @@
+\documentclass{IEEEtran}
+
+%---- Sonderzeichen-------%
+\usepackage[utf8]{inputenc} % this is needed for umlauts
+\usepackage[ngerman]{babel} % this is needed for umlauts
+\usepackage[T1]{fontenc}    % this is needed for correct output of umlauts in pdf
+%---- Codierung----%
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{llncsdoc}
+%----- Mathematischer Zeichenvorrat---%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumerate}
+% fuer die aktuelle Zeit
+\usepackage{scrtime}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{parskip}
+\usepackage[framed,amsmath,thmmarks,hyperref]{ntheorem}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{csquotes}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{subfig}         % multiple figures in one
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage[german,nameinlink]{cleveref}
+\usepackage{braket}
+\allowdisplaybreaks
+\usetikzlibrary{backgrounds}
+\usepackage[binary-units=true]{siunitx}
+\usepackage{mystyle}
+
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+\hypersetup{ 
+  pdftitle    = {Sicherheit im Automobilbereich},
+  pdfauthor   = {Martin Thoma}, 
+  pdfkeywords = {Sicherheit}
+}
+
+\begin{document}
+
+%\mainmatter
+\title{Sicherheit im Automobilbereich}
+%\titlerunning{}
+\author{Martin Thoma}
+%\authorrunning{Seminar Kognitive Automobile}
+%\institute{Betreuer: Christopher Oßner}
+\date{24.04.2015}
+\maketitle
+
+\begin{abstract}%
+\input{abstract}
+\end{abstract}
+
+\section{Einleitung}
+\input{Einleitung}
+
+\section{Related Work}
+\input{Related-Work}
+
+% \section{DYCOS}
+% \input{DYCOS-Algorithmus}
+
+% \section{Analyse des DYCOS-Algorithmus}
+% \input{Analyse}
+
+% \section{Probleme des DYCOS-Algorithmus}
+% \input{SchwaechenVerbesserungen}
+
+\section{Ausblick}
+\input{Ausblick}
+
+% Normaler LNCS Zitierstil
+%\bibliographystyle{splncs}
+\bibliographystyle{itmalpha}
+% TODO: Ändern der folgenden Zeile, damit die .bib-Datei gefunden wird
+\bibliography{literatur}
+
+\end{document}
+
