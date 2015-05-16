@@ -59,6 +59,9 @@ Mögliche gewünschte Effekte:
   * Radio-Nachrichten
   * Verkehrsüberwachung
   * 3rd-Party Navi
+* [Lock picking](https://en.wikipedia.org/wiki/Lock_picking)
+* Verkehrssicherheit (im Sinne von Glatteis, Fahrtauglichkeit, ...)
+
 
 ## Siehe auch
 
