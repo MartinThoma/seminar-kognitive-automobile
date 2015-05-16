@@ -59,3 +59,8 @@ Mögliche gewünschte Effekte:
   * Radio-Nachrichten
   * Verkehrsüberwachung
   * 3rd-Party Navi
+
+## Siehe auch
+
+* [Is there any protection against malicious devices on a CAN bus?](http://security.stackexchange.com/q/88724/3286)
+* [Who defines the identifier of members in a cars CAN?](http://stackoverflow.com/q/30105087/562769)
