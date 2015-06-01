@@ -67,3 +67,9 @@ Mögliche gewünschte Effekte:
 
 * [Is there any protection against malicious devices on a CAN bus?](http://security.stackexchange.com/q/88724/3286)
 * [Who defines the identifier of members in a cars CAN?](http://stackoverflow.com/q/30105087/562769)
+
+* http://motioncars.inquirer.net/36937/hyundai-sonata-first-car-to-launch-android-auto
+
+## Ideen
+* Suchen, wer das Paper von 2011 zitiert
+* Airbag Control Unit \url{http://en.volkswagen.com/en/innovation-and-technology/technical-glossary/airbag-steuergeraet.html}
