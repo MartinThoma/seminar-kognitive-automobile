@@ -1,6 +1,47 @@
 %!TEX root = sicherheit-martin-thoma.tex
 \section{Angriffsarten und -ziele}
+
+In der IT-Sicherheit unterscheidet man zwischen Angriffsvektor und
+\textit{Angriffsziel}. Als \textit{Angriffsvektor} wird der Weg sowie die Art
+und Weise bezeichent, wie ein Angriff durchgeführt wird\cite{Sambleben2012,Metasploit2012}.
+Außerdem unterscheidet man Sicherheitslücken und Exploits. Eine
+Sicherheitslücke stellt eine Schwachstelle in einem System dar. Wenn diese
+Lücke genutzt werden kann um Schaden zuzufügen, dann spricht man von einem
+\textit{Exploit}.
+
+
+\subsection{Angriffsziele}
+Im Automobilbereich sind verschiedene Motive vorstellbar, die einen Angriff
+auf ein Auto erfordern
+
+\begin{itemize}
+    \item Beschaffung von Persönlichen Informationen
+    \item Diebstahl
+    \item Zerstörung
+    \item Mord
+\end{itemize}
+
+Je nach Motivation sind verschiedene Ziele im Auto vorstellbar:
+
+\begin{itemize}
+    \item Positionsinformationen
+    \item Meta-Informationen wie Modell, gefahrene Kilometer
+    \item Öffnen der Türen
+    \item Beschleunigen, Bremsen
+\end{itemize}
+
+
 \subsection{Angriffsvektoren}
+Jede Schnittstelle zum Auto stellt einen möglichen Angriffsvektor dar.
+Allerdings stellen nicht nur Empfänger mögliche Angriffsvektoren dar, sondern
+in bezug auf die Privatsphäre auch Sender.
+
+\begin{itemize}
+    \item OBD-Schnittstelle
+    \item TPMS
+    \item eCall
+\end{itemize}
+
 \subsection{Reverse-Engineering}
 \begin{itemize}
     \item CAN-Bus
