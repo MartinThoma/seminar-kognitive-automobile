@@ -11,41 +11,46 @@ Lücke genutzt werden kann um Schaden zuzufügen, dann spricht man von einem
 
 
 \subsection{Angriffsziele}
-Im Automobilbereich sind verschiedene Motive vorstellbar, die einen Angriff
-auf ein Auto erfordern
-
-\begin{itemize}
-    \item Beschaffung von Persönlichen Informationen
-    \item Diebstahl
-    \item Zerstörung
-    \item Mord
-\end{itemize}
-
-Je nach Motivation sind verschiedene Ziele im Auto vorstellbar:
+Im Automobilbereich sind verschiedene Motive wie Beschaffung von persönlichen
+Informationen, Diebstahl, Zerstörung und Mord, vorstellbar, die einen Angriff
+auf ein Auto erfordern. Je nach Motivation sind verschiedene Ziele im Auto für
+den Angreifer von Interesse:
 
 \begin{itemize}
     \item Positionsinformationen
-    \item Meta-Informationen wie Modell, gefahrene Kilometer
+    \item Meta-Informationen wie Modell oder gefahrene Kilometer
     \item Öffnen der Türen
-    \item Beschleunigen, Bremsen
+    \item Beschleunigen oder Bremsen
 \end{itemize}
+
+Im Folgenden wird beschrieben, wie diese Daten abgegriffen werden können.
 
 
 \subsection{Angriffsvektoren}
-Jede Schnittstelle zum Auto stellt einen möglichen Angriffsvektor dar.
-Allerdings stellen nicht nur Empfänger mögliche Angriffsvektoren dar, sondern
-in bezug auf die Privatsphäre auch Sender.
-
-\begin{itemize}
-    \item OBD-Schnittstelle
-    \item TPMS
-    \item eCall
-\end{itemize}
+Jeder Empfänger stellt als Schnittstelle zum Auto einen möglichen
+Angriffsvektor dar. Allerdings sind in Bezug auf die Privatsphäre auch Sender
+mögliche Angriffswege. Dabei ist insbesondere die OBD-Schnittstelle, TPMS und
+eCall zu nennen.
 
 \subsection{Reverse-Engineering}
-\begin{itemize}
-    \item CAN-Bus
-    \item OBD-Diagnosegerät
-    \item TPMS
-    \item eCall?
-\end{itemize}
+Reverse-Engineering bezeichnet den Vorgang ein System nachzuentwickeln. Im
+Bezug auf Computersicherheit wird dies von Angreifern gemacht um die genaue
+Funktionsweise des Originals nachvollziehen und mögliche Fehler in der
+Entwicklung oder sogar im Design zu entdecken. Reverse-Engineering kann nicht
+verhindert, aber erschwert werden.
+
+Die Sicherheit keines Computersystems sollte ausschließlich auf der
+Geheimhaltung der Implementierung beruhen \cite{ServerSecurity2008}, sie kann
+aber eine weitere Sicherungsschicht sein. Diese kann es dem Angreifer
+erschweren, den eigentlichen Angriff durchzuführen oder Fehler in der
+Implementierung verdecken.
+
+Aus diesem Grund sollte das Reverse-Engineering schwer sein. Insbesondere
+sollten sog. Debugging-Symbole, also Informationen welche im der Binärdatei
+hinterlegt werden um Fehler aufzuspüren, nicht in verkauften Autos sein. Des
+Weiteren sollten Fehlernachricht aus dem Produktivcode entfernt werden. Beides
+wurde in \cite{Checkoway2011} in einem untersuchtem Auto im Code von ECUs
+gefunden gefunden.
+
+
+\subsection{Angriffszenarien}

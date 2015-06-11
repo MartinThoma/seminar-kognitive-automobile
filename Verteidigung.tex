@@ -1,8 +1,9 @@
 %!TEX root = sicherheit-martin-thoma.tex
 \section{Verteidigungsmaßnahmen}
+Wie in den vorherigen Abschnitten beschrieben wurde, ist der CAN-Bus eine große
+Schwachstelle der IT-Sicherheit in Autos. Über ihn müssen viele ECUs
+kommunizieren und einige, wie das Autoradio, werden nicht als
+Sicherheitskritsch wahrgenommen.
 
-\begin{itemize}
-    \item Sanitizing User input
-    \item \enquote{Encryption} der Pakete
-    \item \enquote{Obfuscation} (Debugging-Symbole entfernen)
-\end{itemize}
+Daher ist es wichtig die Nachrichten, welche über den CAN-Bus empfangen werden,
+zu filtern. Die Informationen müssen auf Plausibilität geprüft werden.
