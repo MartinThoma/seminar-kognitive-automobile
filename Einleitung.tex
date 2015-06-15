@@ -2,17 +2,21 @@
 
 \section{Einleitung}
 Kognitive Automobile sind, im Gegensatz zu klassichen Automobilen, in der Lage
-ihre Umwelt und sich selbst wahrzunehmen und dem Fahrer zu assistieren. So
-benötigt ein Auto mit Antiblockiersystem beispielsweise die Drehzahl an jedem
-Reifen; für Einparkhilfen werden Sensoren benötigt, welche die Distanz zu
-Hindernissen wahrnehmen sowie Aktoren, die das Auto lenken und beschleunigen
-könne. Weitere dieser System sind Spurhalteassistenz, Spurwechselassistenz und
-Fernlichtassistenz. Um die Funktionalität dieser Assistenzsysteme bereitstellen
-zu können, muss das Auto die Umwelt wahrnehmen und -- in festlegbaren Grenzen
--- autonom agieren können.
+ihre Umwelt und sich selbst wahrzunehmen und dem Fahrer zu assistieren oder
+auch teil- bzw. vollautonom zu fahren. Diese Systeme benötigen Zugriff auf
+Sensoren und Aktoren, um ihre Aufgabe zu erfüllen. So benötigt ein Auto mit
+Antiblockiersystem beispielsweise die Drehzahl an jedem Reifen und die
+Möglichkeit die Bremsen zu beeinflussen; für Einparkhilfen werden Sensoren
+benötigt, welche die Distanz zu Hindernissen wahrnehmen sowie Aktoren, die das
+Auto lenken und beschleunigen können. Weitere dieser Systeme sind
+Spurhalteassistenz, Spurwechselassistenz und Fernlichtassistenz.
 
 Als immer mehr elektronische Systeme in Autos verbaut wurden, die teilweise
 redundante Aufgaben erledigt haben, wurde der CAN-Bus
-entwickelt\cite{Kiencke1986}. Dieser wurde in ISO 11898 international
-standardisiert. Über ihn kommunizieren elektronische Steuergeräte, sog.
-\textit{ECUs} (engl. \textit{electronic control units}).
+entwickelt\cite{Kiencke1986}. Über ihn kommunizieren elektronische
+Steuergeräte, sog. \textit{ECUs} (engl. \textit{electronic control units}).
+
+Der folgende Abschnitt geht auf solche Standards und Verordnungen, die in der
+Europäischen Union gültig sind, ein. In \cref{sec:attack} werden Angriffsziele
+und Grundlagen zu den Angriffen erklärt, sodass in \cref{sec:defense} mögliche
+Verteidigungsmaßnahmen erläutert werden können.
