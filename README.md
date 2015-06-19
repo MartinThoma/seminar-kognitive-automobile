@@ -73,3 +73,8 @@ Mögliche gewünschte Effekte:
 ## Ideen
 * Suchen, wer das Paper von 2011 zitiert
 * Airbag Control Unit \url{http://en.volkswagen.com/en/innovation-and-technology/technical-glossary/airbag-steuergeraet.html}
+
+
+## TODO
+
+* PKW <-> Automobil <-> Auto <-> Kfz?
