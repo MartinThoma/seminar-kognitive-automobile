@@ -3,9 +3,19 @@
 
 \subsection{Verteidigung}
 
-\begin{frame}{Verteidigung}
-    \begin{itemize}
+\begin{frame}[fragile]{Verteidigung}
+    \begin{itemize}[<+->]
         \item Wenig Elektronik? Getrennte Bus-Systeme?
-        \item Hersteller-Seite (langfristig / kurzfirstig)
+        \item Obfuscation: Debugging-Symbole entfernen um Reverse-Engineering
+              zu erschweren
+        \item Plausibilität von CAN-Nachrichten prüfen
+        \item Authentifizierung vor Software-Updates
+        \item Andere Sprachen (Java, Rust)
+        \item Besserer Code
+        \begin{itemize}
+            \item Code Reviews
+            \item Static Code Analysis
+        \end{itemize}
+        \item Speizielles (Stack Cookies, \verb+strncpy()+ anstatt \verb+strncpy()+)
     \end{itemize}
 \end{frame}
