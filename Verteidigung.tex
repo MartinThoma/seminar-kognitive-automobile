@@ -1,9 +1,29 @@
 %!TEX root = sicherheit-martin-thoma.tex
 \section{Verteidigungsmaßnahmen}\label{sec:defense}
-Wie in den vorherigen Abschnitten beschrieben wurde, ist der CAN-Bus eine große
-Schwachstelle der IT-Sicherheit in Autos. Über ihn müssen viele ECUs
-kommunizieren und einige, wie das Autoradio, werden nicht als
+Der CAN-Bus ist eine große Schwachstelle der IT-Sicherheit in Autos. Über ihn
+müssen viele ECUs kommunizieren und einige, wie das Autoradio, werden nicht als
 Sicherheitskritsch wahrgenommen.
 
 Daher ist es wichtig die Nachrichten, welche über den CAN-Bus empfangen werden,
 zu filtern. Die Informationen müssen auf Plausibilität geprüft werden.
+
+Alle von Checkoway~et~al. beschriebenen Angriffe basieren zum einen auf
+Reverse-Engineering, also der Rekonstruktion der Software-Systeme und
+Protokolle, zum anderen auf Fehlern in der Software. Das Reverse-Engineering
+wurde in einigen Fällen laut Checkoway~et~al. stark vereinfacht, da
+Debugging-Symbole in der Software war. Diese können und sollten einfach
+entfernt werden.
+
+Außerdem sollten laut Checkoway~et~al. die Diagnosegeräte Authentifizierung und
+Verschlüsselung wie beispielsweise OpenSSL nutzen.
+
+Gegen Buffer-Overflow-Angriffe können zum einen Sprachen wie Java oder Rust
+verwendet werden, welche die Einhaltung der Bereichsgrenzen automatisch
+überprüfen. Des weiteren kann anstelle der C-Funktion \verb+strcpy()+ die
+Funktion \verb+strncpy()+ verwendet werden, welche die Anzahl der zu
+schreibenden Zeichen begrenzt \cite{Eckert2012}. Ein weiteres Konzept zum
+Schutz vor Buffer-Overflow-Angriffen sind Stack Cookies \cite{Bray2002}.
+
+Code Reviews können auch solche Sicherheitslücken aufdecken \cite{Howard2006}.
+Code Reviews können teilweise automatisch mit Werkzeugen zur statischen Code
+Analyse durchgeführt werden \cite{McGraw2008}.

@@ -1,62 +1,109 @@
 %!TEX root = sicherheit-martin-thoma.tex
-\section{Angriffsarten und -ziele}\label{sec:attack}
+\section{Angriffe}\label{sec:attack}
 
-In der IT-Sicherheit unterscheidet man zwischen Angriffsvektor und
-\textit{Angriffsziel}. Als \textit{Angriffsvektor} wird der Weg sowie die Art
-und Weise bezeichent, wie ein Angriff durchgeführt wird\cite{Sambleben2012,Metasploit2012}.
-Außerdem unterscheidet man Sicherheitslücken und Exploits. Eine
-Sicherheitslücke stellt eine Schwachstelle in einem System dar. Wenn diese
-Lücke genutzt werden kann um Schaden zuzufügen, dann spricht man von einem
-\textit{Exploit}.
+Eine Reihe von elektronischen Systemen wurde zum Diebstahlschutz entwickelt
+\cite{Song2008,Turner1999,Hwang1997}. Allerdings passen sich auch Diebe an die
+modernen Gegebenheiten, insbesondere Funkschlüssel \cite{Lee2014}, an. Außerdem
+gehen diese Systeme von einem klassischen Angreifer aus, der sich
+ausschließlich auf der Hardware-Ebene bewegt.
 
-
-\subsection{Angriffsziele}
-Im Automobilbereich sind verschiedene Motive wie Beschaffung von persönlichen
-Informationen, Diebstahl, Zerstörung und Mord, vorstellbar, die einen Angriff
-auf ein Auto erfordern. Je nach Motivation sind verschiedene Ziele im Auto für
-den Angreifer von Interesse:
-
-\begin{itemize}
-    \item Positionsinformationen
-    \item Meta-Informationen wie Modell oder gefahrene Kilometer
-    \item Öffnen der Türen
-    \item Beschleunigen oder Bremsen
-\end{itemize}
-
-Im Folgenden wird beschrieben, wie diese Daten abgegriffen werden können.
+Im Folgenden werden zunächst Möglichkeiten von netzwerk-internen Angreifer,
+d.h. Angreifern welche physischen Zugang zum CAN-Bus haben, aufgelistet. Es
+folgt eine Beschreibung wie Angreifer ohne direkten physischen Zugriff auf das
+Auto sich mit dem CAN-Bus verbinden können.
 
 
-\subsection{Angriffsvektoren}
-Jeder Empfänger stellt als Schnittstelle zum Auto einen möglichen
-Angriffsvektor dar. Allerdings sind in Bezug auf die Privatsphäre auch Sender
-mögliche Angriffswege. Dabei ist insbesondere die OBD-Schnittstelle, TPMS und
-eCall zu nennen.
+\subsection{CAN-interne Angriffe}
+Koscher~et~al.~haben in \cite{Koscher2010} zwei nicht näher spezifizierte Autos
+der selben Marke und des selben Modells untersucht. Sie waren in der Lage über
+den CAN-Bus etliche Funktionen des Autos, unabhängig vom Fahrer, zu
+manipulieren. Das beinhaltet: deaktivieren und aktivieren der Bremsen, stoppen
+des Motors, steuern der Klimaanlage, Heizung, Lichter, Manipulation der
+Anzeigen im Kombiinstrument sowie das Öffnen und Schließen der Schlösser. Durch
+moderne Systeme wie eCall kann der Angreifer sich sogar einen
+Kommunikationskanal zu dem Auto aufbauen. Dies setzt allerdings voraus, dass
+der Angreifer sich bereits im Auto-Internen Netzwerk befindet.
 
-Die OBD-Schnittstelle wird bereits von Dieben benutzt \cite{Dailymail2015},
-allerdings muss der Dieb dazu bereits im Auto sein.
+\subsection{CAN-externe Angriffe}
+In~\cite{Checkoway2011} wurde an einer Mittelklasselimosine mit
+Standardkomponenten gezeigt, dass der Zugang zum auto-internen Netzwerk über
+eine Vielzahl an Komponenten erfolgen kann. So haben Checkoway~et~al.
+CD-Spieler, Bluetooth und den OBD-Zugang als mögliche Angriffsvektoren
+identifiziert.
+
+Bei dem Angriff über den Media Player haben Checkoway~et~al. die Tatsache
+genutzt, dass dieser am CAN-Bus angeschlossen ist und die Software des
+Mediaplayers über eine CD mit einem bestimmten Namen und Dateiformat
+aktualisiert werden kann. Außerdem wurde ein Fehler beim abspielen der
+Audio-Dateien genutzt um einen Buffer Overflow zu erzeugen. Es wurde gezeigt,
+dass dieser genutzt werden kann um die Software des Media-Players zu
+aktualisieren. Dafür muss nur eine modifizierte Audio-Datei, welche immer noch
+abspielbar ist, auf der CD sein.
+
+Der von Checkoway~et~al. durchgeführte Angriff via Bluetooth benötigt ein
+mit dem Media Player verbundenes Gerät. Dieses nutzt dann unüberprüfte
+\verb+strcpy+-Befehle bei der Bluetooth-Konfiguration aus um beliebigen Code
+auf der Telematik-Einheit des Autos ausführen zu können. Daher ist das
+Smartphone des Autobesitzers ein Angriffsvektor.
+
+Die Bluetooth-Verbindung kann jedoch auch ohne ein verbundenes Gerät für
+Angriffe genutzt werden. Dazu muss der Angreifer genügend Zeit in der Nähe des
+Autos verbringen um die Bluetooth-MAC-Adresse zu erfahren. Damit kann er ein
+Anfrage zum Verbindungsaufbau starten. Diese müsste der Benutzer normalerweise
+mit der Eingabe einer PIN bestätigen. Checkoway~et~al. haben für ein Auto
+gezeigt, dass die Benutzerinteraktion nicht nötig it und die PIN via
+Brute-Force, also das Ausprobieren aller Möglichkeiten, innerhalb von
+10~Stunden gefunden werden kann. Allerdings kann dieser Angriff parallel
+ausgeführt werden. Es ist also beispielsweise möglich diesen Angriff für alle
+Autos in einem Parkhaus durchzuführen.
+
+Die standardisierte und von Automechanikern zu Diagnosezwecken genutzte
+OBD-Schnittstelle stellt einen weiteren Angriffspunkt dar. Für die
+verschiedenen Marken gibt es Diagnosewerkzeuge, wie z.B. NGS für Ford,
+Consult~II für Nissan und der Diagnostic~Tester von Toyota. Diese dedizierten
+Diagnosegeräte werden allerdings über PCs mit aktualisierungen versorgt.
+Modernere Diagnosewerkzeuge sind nicht mehr bei der Diagnose vom PC getrennt,
+sondern werden direkt, über ein Kabel, W-LAN oder Bluetooth, mit einem PC
+verbunden. Daher stellt die Diagnose- und Aktualisierungstätigkeit von
+Automechanikern einen weiteren Angriffsvektor dar. Wenn der Mechaniker ein
+Diagnosegerät benutzt, welches ein W-LAN aufbaut, so können Angreifer sich
+mit diesem verbinden und selbst Aktualisierungen durchführen. Außerdem wurde
+von Checkoway~et~al. gezeigt, dass auch das Diagnosegerät selbst so manipuliert
+werden kann, dass es automatisch die gewünschten Angriffe ausführt.
+
+Wie in \cref{sec:standards} beschrieben wird eCall-System ab 2018 in Europa
+verpflichtend eingeführt. Dieses nutzt das Mobilfunknetz zur Kommunikation.
+Checkoway~et~al. haben gezeigt, dass Telematik-Einheiten von außerhalb des
+Autos angewählt werden und die Software auf diese Weise aus beliebigen
+Entfernungen aktualisiert werden kann. Dazu wurden zahlreiche Schwachstellen
+der Telematik-Einheit von Airbiquitys Modem aqLink genutzt. Dieses Modem wird
+unter anderem von BMW und Ford eingesetzt \cite{AirbiquityBMW,AirbiquityFord}.
+
+Ein Angriff auf die Privatsphäre ist mit TPMS möglich. In~\cite{Rouf2010} wurde
+gezeigt, dass TPMS-Signale zur Identifikation von Autos genutzt werden können.
+Die Identifikation eines vorbeifahrenden Autos ist aus bis zu \SI{40}{\meter}
+Entfernung möglich.
+
+Genauso stellt das Mikrofon, welches wegen eCall ab 2018 in jedem Auto sein
+muss, eine Möglichkeit zum Angriff auf die Privatsphäre dar.
 
 
-\subsection{Reverse-Engineering}
-Reverse-Engineering bezeichnet den Vorgang ein System nachzuentwickeln. Im
-Bezug auf Computersicherheit wird dies von Angreifern gemacht um die genaue
-Funktionsweise des Originals nachvollziehen und mögliche Fehler in der
-Entwicklung oder sogar im Design zu entdecken. Reverse-Engineering kann nicht
-verhindert, aber erschwert werden.
+% \subsection{Reverse-Engineering}
+% Reverse-Engineering bezeichnet den Vorgang ein System nachzuentwickeln. Im
+% Bezug auf Computersicherheit wird dies von Angreifern gemacht um die genaue
+% Funktionsweise des Originals nachvollziehen und mögliche Fehler in der
+% Entwicklung oder sogar im Design zu entdecken. Reverse-Engineering kann nicht
+% verhindert, aber erschwert werden.
 
-Die Sicherheit keines Computersystems sollte ausschließlich auf der
-Geheimhaltung der Implementierung beruhen \cite{ServerSecurity2008}, sie kann
-aber eine weitere Sicherungsschicht sein. Diese kann es dem Angreifer
-erschweren, den eigentlichen Angriff durchzuführen oder Fehler in der
-Implementierung verdecken.
+% Die Sicherheit keines Computersystems sollte ausschließlich auf der
+% Geheimhaltung der Implementierung beruhen \cite{ServerSecurity2008}, sie kann
+% aber eine weitere Sicherungsschicht sein. Diese kann es dem Angreifer
+% erschweren, den eigentlichen Angriff durchzuführen oder Fehler in der
+% Implementierung verdecken.
 
-Aus diesem Grund sollte das Reverse-Engineering schwer sein. Insbesondere
-sollten sog. Debugging-Symbole, also Informationen welche im der Binärdatei
-hinterlegt werden um Fehler aufzuspüren, nicht in verkauften Autos sein. Des
-Weiteren sollten Fehlernachricht aus dem Produktivcode entfernt werden. Beides
-wurde in \cite{Checkoway2011} in einem untersuchtem Auto im Code von ECUs
-gefunden gefunden.
-
-
-\subsection{Angriffszenarien}
-Angriffe auf die IT-Infrastruktur von Autos werden bereits regelmäßig
-durchgeführt. In London wurden 2014 TODO
+% Aus diesem Grund sollte das Reverse-Engineering schwer sein. Insbesondere
+% sollten sog. Debugging-Symbole, also Informationen welche im der Binärdatei
+% hinterlegt werden um Fehler aufzuspüren, nicht in verkauften Autos sein. Des
+% Weiteren sollten Fehlernachricht aus dem Produktivcode entfernt werden. Beides
+% wurde in \cite{Checkoway2011} in einem untersuchtem Auto im Code von ECUs
+% gefunden gefunden.

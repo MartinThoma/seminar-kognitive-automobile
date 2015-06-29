@@ -13,8 +13,12 @@ ab 1.~Januar 2004. Die EU-Direktive führt weiter die in der ISO DIS 15031-6
 Norm aufgeführten Fehlercodes als Minimalstandard ein. Diese müssen
 \enquote{für genormte Diagnosegeräte [\dots] uneingeschränkt zugänglich sein}.
 Außerdem muss die Schnittstelle im Auto so verbaut werden, dass sie
-\enquote{für das Servicepersonal leicht zugänglich, zugleich aber vor
-unbefugten Eingriffen durch nichtqualifizierte Personen geschützt ist}.
+\enquote{für das Servicepersonal leicht zugänglich [\dots] ist}.
+
+Der Software-Zugang wird mit J2534 \cite{SAE2004} standardisiert. Dieser
+Standard stellt sicher, dass unabhängig vom OBD-Reader Diagnosen über das
+Auto erstellt und die ECUs umprogrammiert bzw. mit Aktualisierungen versorgt
+werden können.
 
 Um die Daten bereitzustellen, werden verschiedene elektronische Komponenten
 über den CAN-Bus vernetzt. Dieser ist in ISO 11898 genormt.
@@ -23,7 +27,10 @@ Weiterhin wurde in der EU mit \cite{EURegulation661/2009} beschlossen, dass ab
 1.~November 2012 alle PKWs für Neuzulassungen ein System zur
 Reifendrucküberwachung (engl. \textit{tire pressure monitoring system}, kurz
 \textit{TPMS}) besitzen müssen. Ab 1.~November 2014 müssen alle Neuwagen ein
-solches System besitzen.
+solches System besitzen. Da sich die Räder schnell drehen ist eine
+kabelgebundene Übertragung der Druckmesswerte nicht durchführbar. Daher sendet
+jeder Reifen kabellos ein Signal, welches von einem oder mehreren Sensoren im
+Auto aufgenommen wird.
 
 Mit \cite{EURegulation2015/ecall} wird für Fahrzeuge, die ab dem 31.~März 2018
 gebaut werden das eCall-System, ein elektronisches Notrufsystem, verpflichtend.

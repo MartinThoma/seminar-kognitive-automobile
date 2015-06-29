@@ -78,3 +78,4 @@ Mögliche gewünschte Effekte:
 ## TODO
 
 * PKW <-> Automobil <-> Auto <-> Kfz?
+* http://ieeexplore.ieee.org/xpl/abstractCitations.jsp?arnumber=5504804
