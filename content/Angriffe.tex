@@ -1,4 +1,4 @@
-%!TEX root = ../sicherheit-martin-thoma.tex
+%!TEX root = ../booka4.tex
 \chapter{Angriffe}\label{ch:attack}
 
 Eine Reihe von elektronischen Systemen wurde zum Diebstahlschutz entwickelt
@@ -86,6 +86,48 @@ Entfernung möglich.
 
 Genauso stellt das Mikrofon, welches wegen eCall ab 2018 in jedem Auto sein
 muss, eine Möglichkeit zum Angriff auf die Privatsphäre dar.
+
+
+\section{Buffer-Overflow Angriffe}
+Dieser Abschnitt erklärt anhand eines einfachen Beispiels wie Buffer Overflow
+Angriffe durchgeführt werden. Der gezeigte Assembler-Code wurde mit der GCC auf
+einem 64-Bit Linux-Rechner erstellt. Grundlagen über Assembler-Code sind in
+\cite{Albert2012} zu finden.
+
+Buffer-Overflow Angriffe nutzen die Tatsache aus, dass bestimmte Befehle wie
+Beispielsweise \verb+gets+ Strings in eine Puffer schreiben, ohne die Größe des
+Puffers zu beachten. \verb+gets+ erhält als Parameter einen Zeiger auf die
+Startadresse des Puffers. Wenn der Benutzer eine längere Eingabe macht als der
+Puffer erlaubt, so wird in nachfolgende Speicherbereiche geschrieben. Dies kann
+an folgendem Beispiel aus \cite{Arora2013} beobachtet werden:
+
+\inputminted[linenos, numbersep=5pt, tabsize=4, frame=lines, label=simple.c]{c}{content/exploit-buffer-overflow/simple.c}
+
+Kompiliert man dieses Programm mit
+\verb+gcc -O0 -fno-stack-protector -g simple.c -o simple+, so kann man mit der
+Eingabe von 16 Zeichen die Variable \verb+pass+ überschreiben.
+
+Allerdings ist es nicht nur möglich interne Variablen zu überschreiben, sondern
+sogar beliebigen Code auszuführen. Dies wird in \cite{Mixter} mit einem sehr
+ähnlichem Beispiel gezeigt und im Detail erklärt. Dabei wird nicht beliebiger
+Text in den Puffer geschrieben, sondern sogenannter \textit{Shellcode}. Unter
+Shellcode versteht man Assemblerbefehle, welche in Opcodes umgewandelt wurden.
+
+
+% und Hinweise zu Registern können \cite{Bendersky2011} entnommen
+% werden.
+
+% Das folgende Programm liest eine Eingabe von der Kommandozeile, schreibt diese
+% in einen Puffer und gibt die Eingabe dann aus:
+
+% \inputminted[linenos, numbersep=5pt, tabsize=4, frame=lines, label=exploitable.c]{c}{content/exploit-buffer-overflow/exploitable.c}
+
+% Dieses kann auf Linux-System mit \verb+gcc -O0 -fno-stack-protector -g exploitable.c -o exploitable+
+% kompiliert werden. Mit Hilfe des GNU Debuggers, welcher über den Befehl
+% \verb+gdb exploitable+ ausgeführt wird, kann der Assembler-Code mit
+% \verb+disas main+ angezeigt werden:
+
+% \inputminted[linenos, numbersep=5pt, tabsize=4, frame=lines, label=exploitable.asm]{nasm}{content/exploit-buffer-overflow/exploitable.asm}
 
 
 % \section{Reverse-Engineering}
