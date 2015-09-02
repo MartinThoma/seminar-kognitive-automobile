@@ -82,3 +82,4 @@ Mögliche gewünschte Effekte:
 
 * PKW <-> Automobil <-> Auto <-> Kfz?
 * http://ieeexplore.ieee.org/xpl/abstractCitations.jsp?arnumber=5504804
+* http://jabsoft.io/2013/09/25/are-buffer-overflows-solved-yet-a-historical-tale/
