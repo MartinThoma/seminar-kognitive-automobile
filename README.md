@@ -2,6 +2,9 @@
 Ausarbeitung des Seminars "Kognitive Automobile" am KIT über das Thema
 "Sicherheit".
 
+* [Ausarbeitung](https://github.com/MartinThoma/seminar-kognitive-automobile/raw/master/booka4.pdf)
+* [Präsentation](https://github.com/MartinThoma/seminar-kognitive-automobile/raw/master/praesentation/LaTeX/Seminar-KogCars-Sicherheit-Martin-Thoma.pdf)
+
 ## Worum es geht
 
 Angriffe und Verteidigungsmöglichkeiten auf Informatik-Systeme im Auto
