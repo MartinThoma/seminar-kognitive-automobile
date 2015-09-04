@@ -10,7 +10,10 @@ ausschließlich auf der Hardware-Ebene bewegt.
 Im Folgenden werden zunächst Möglichkeiten von netzwerk-internen Angreifer,
 d.h. Angreifern welche physischen Zugang zum CAN-Bus haben, aufgelistet. Es
 folgt eine Beschreibung wie Angreifer ohne direkten physischen Zugriff auf das
-Auto sich mit dem CAN-Bus verbinden können.
+Auto sich mit dem CAN-Bus verbinden können. Viele Angriffe nutzen sogenannte
+Buffer-Overflows aus. Diese werden in~\cref{sec:Buffer-Overflow} erklärt.
+Abschließend folgt ein Abschnitt über konkrete, der Öffentlichkeit bekannt
+gewordene Sicherheitslücken.
 
 
 \section{CAN-interne Angriffe}
@@ -34,17 +37,18 @@ identifiziert.
 Bei dem Angriff über den Media Player haben Checkoway~et~al. die Tatsache
 genutzt, dass dieser am CAN-Bus angeschlossen ist und die Software des
 Mediaplayers über eine CD mit einem bestimmten Namen und Dateiformat
-aktualisiert werden kann. Außerdem wurde ein Fehler beim abspielen der
+aktualisiert werden kann. Außerdem wurde ein Fehler beim Abspielen der
 Audio-Dateien genutzt um einen Buffer Overflow zu erzeugen. Es wurde gezeigt,
 dass dieser genutzt werden kann um die Software des Media-Players zu
 aktualisieren. Dafür muss nur eine modifizierte Audio-Datei, welche immer noch
 abspielbar ist, auf der CD sein.
 
 Der von Checkoway~et~al. durchgeführte Angriff via Bluetooth benötigt ein
-mit dem Media Player verbundenes Gerät. Dieses nutzt dann unüberprüfte
-\verb+strcpy+-Befehle bei der Bluetooth-Konfiguration aus um beliebigen Code
-auf der Telematik-Einheit des Autos ausführen zu können. Daher ist das
-Smartphone des Autobesitzers ein Angriffsvektor.
+mit dem Media Player verbundenes Gerät. Dieses nutzt dann
+\verb+strcpy+-Befehle, bei denen die Puffergrößen nicht überprüft wurden um bei
+der Bluetooth-Konfiguration aus um beliebigen Code auf der Telematik-Einheit
+des Autos ausführen zu können. Daher ist das Smartphone des Autobesitzers ein
+Angriffsvektor.
 
 Die Bluetooth-Verbindung kann jedoch auch ohne ein verbundenes Gerät für
 Angriffe genutzt werden. Dazu muss der Angreifer genügend Zeit in der Nähe des
@@ -55,13 +59,14 @@ gezeigt, dass die Benutzerinteraktion nicht nötig it und die PIN via
 Brute-Force, also das Ausprobieren aller Möglichkeiten, innerhalb von
 10~Stunden gefunden werden kann. Allerdings kann dieser Angriff parallel
 ausgeführt werden. Es ist also beispielsweise möglich diesen Angriff für alle
-Autos in einem Parkhaus durchzuführen.
+Autos in einem Parkhaus durchzuführen. Bei einem parallel durchgeführten
+Brute-Force-Angrif ist der erste Erfolg deutlich schneller zu erwarten.
 
 Die standardisierte und von Automechanikern zu Diagnosezwecken genutzte
 OBD-Schnittstelle stellt einen weiteren Angriffspunkt dar. Für die
 verschiedenen Marken gibt es Diagnosewerkzeuge, wie z.B. NGS für Ford,
 Consult~II für Nissan und der Diagnostic~Tester von Toyota. Diese dedizierten
-Diagnosegeräte werden allerdings über PCs mit aktualisierungen versorgt.
+Diagnosegeräte werden allerdings über PCs mit Aktualisierungen versorgt.
 Modernere Diagnosewerkzeuge sind nicht mehr bei der Diagnose vom PC getrennt,
 sondern werden direkt, über ein Kabel, W-LAN oder Bluetooth, mit einem PC
 verbunden. Daher stellt die Diagnose- und Aktualisierungstätigkeit von
@@ -88,7 +93,7 @@ Genauso stellt das Mikrofon, welches wegen eCall ab 2018 in jedem Auto sein
 muss, eine Möglichkeit zum Angriff auf die Privatsphäre dar.
 
 
-\section{Buffer-Overflow Angriffe}
+\section{Buffer-Overflow Angriffe}\label{sec:Buffer-Overflow}
 Dieser Abschnitt erklärt anhand eines einfachen Beispiels wie Buffer Overflow
 Angriffe durchgeführt werden. Der gezeigte Assembler-Code wurde mit der GCC auf
 einem 64-Bit Linux-Rechner erstellt. Grundlagen über Assembler-Code sind in
@@ -104,8 +109,8 @@ an folgendem Beispiel aus \cite{Arora2013} beobachtet werden:
 \inputminted[linenos, numbersep=5pt, tabsize=4, frame=lines, label=simple.c]{c}{content/exploit-buffer-overflow/simple.c}
 
 Kompiliert man dieses Programm mit
-\verb+gcc -O0 -fno-stack-protector -g simple.c -o simple+, so kann man mit der
-Eingabe von 16 Zeichen die Variable \verb+pass+ überschreiben.
+\verb+gcc -O0 -fno-stack-protector -g simple.c -o simple+, so kann mit der
+Eingabe von 16~Zeichen die Variable \verb+pass+ überschrieben werden.
 
 Allerdings ist es nicht nur möglich interne Variablen zu überschreiben, sondern
 sogar beliebigen Code auszuführen. Dies wird in \cite{Mixter} mit einem sehr
@@ -114,7 +119,13 @@ Text in den Puffer geschrieben, sondern sogenannter \textit{Shellcode}. Unter
 Shellcode versteht man Assemblerbefehle, welche in Opcodes umgewandelt wurden.
 
 
-\section{Aktuelle Situation}
+\section{Sicherheitslage in Automobilien bis August 2015}
+Heutzutage ist nicht nur die Hardware von Automobilen durch Diebe und andere
+Angreifer gefährdet, sondern auch die Software. Die folgenden Beispiele zeigen,
+dass Angriffe auf die IT in Automobilen nicht nur im akademischen Rahmen
+auf einige wenige spezielle Modelle durchgeführt werden, sondern dass auch
+modellübergreifende Angriffe möglich sind.
+
 2010 hat ein ehemaliger Angestellter mehr als 100 Autos über ein
 Fernsteuersystem, welches Kunden an fällige Zahlungen erinnern soll, die Hupen
 aktiviert~\cite{Poulsen2010}.
@@ -126,6 +137,16 @@ wurde von Charlie Miller und Chris Valasek gezeigt, dass das
 Unterhaltungssystem Uconnect von Fiat Crysler benutzt werden kann um Autos aus
 der Ferne zu übernehmen. Wegen dieses Softwarefehlers hat Fiat Chrysler
 1,4~Millionen Autos zurückgerufen~\cite{Gallagher2015}.
+
+2015 wurde eine Sicherheitslücke in BMW's ConnectedDrive bekannt. Diese hat
+es dem Angreifer erlaubt, das Auto zu öffnen~\cite{Spaar2015}. Dieter Spaar
+hat dabei mehrere Sicherheitslücken aufgedeckt: BMW hat in allen Fahrzeugen
+die selben symmetrischen Schlüssel eingesetzt, Teildienste haben keine
+Transportverschlüsselung verwendet und ConnectedDrive war nicht gegen
+Replay-Angriffe geschützt. Bei Replay-Angriffen nimmt der Angreifer Teile der
+Kommunikation zwischen dem BMW-Server und dem Auto auf und spielt diese
+später wieder ab. Dies könnte beispielsweise eine Nachricht sein, die das
+Auto entriegelt.
 
 In \cite{Verdult2015} wurde 2015 gezeigt, dass einige dutzend Automodelle von
 Audi, Ferrari, Fiat, Opel, VW und weiterer Marken eine Sicherheitslücke in den
