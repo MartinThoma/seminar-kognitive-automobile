@@ -1,5 +1,10 @@
 %!TEX root = ../booka4.tex
 \chapter{Verteidigungsmaßnahmen}\label{ch:defense}
+Wie bereits in \cref{sec:sicherheitslage} beschrieben, sind die Arten der
+Angriffe nicht neu. Daher sind auch die Verteidigungsmaßnahmen nicht
+spezifisch für den Automobilbereich, sondern allgemeiner softwaretechnischer
+Art.
+
 Es gibt etliche Automobilhersteller, -marken und -modelle. Für viele Modelle
 gibt es unterschiedliche Konfigurationen und wiederum zahlreiche Optionen für
 Zubehör wie beispielsweise das Autoradio oder Navigationssysteme. Dies macht
@@ -10,11 +15,10 @@ Angreifer diese fahrzeugübergreifend nutzen können.
 
 Der CAN-Bus ist eine große Schwachstelle der IT-Sicherheit in Autos. Über ihn
 müssen viele ECUs kommunizieren und einige, wie das Autoradio, werden nicht als
-Sicherheitskritsch wahrgenommen. Gleichzeitig sind sicherheitskritische ECUs
-an dem selben CAN-Bus angeschlossen.
-
-Daher ist es wichtig die Nachrichten, welche über den CAN-Bus empfangen werden,
-zu filtern. Die Informationen müssen auf Plausibilität geprüft werden.
+Sicherheitskritsch wahrgenommen. Gleichzeitig sind sicherheitskritische ECUs an
+dem selben CAN-Bus angeschlossen. Daher ist es wichtig die Nachrichten, welche
+über den CAN-Bus empfangen werden, zu filtern. Die Informationen müssen auf
+Plausibilität geprüft werden.
 
 Alle von Checkoway~et~al. beschriebenen Angriffe basieren zum einen auf
 Reverse-Engineering, also der Rekonstruktion der Software-Systeme und
