@@ -96,13 +96,13 @@ muss, eine Möglichkeit zum Angriff auf die Privatsphäre dar.
 \section{Buffer Overflow Angriffe}\label{sec:Buffer-Overflow}
 Dieser Abschnitt erklärt anhand eines einfachen Beispiels wie Buffer Overflow
 Angriffe durchgeführt werden.
-% Der gezeigte Assembler-Code wurde mit der GCC auf
-% einem 64-Bit Linux-Rechner erstellt.
-% Grundlagen über Assembler-Code sind in
-% \cite{Albert2012} zu finden.
+
+Um Buffer Overflow Angriffe zu verstehen, müssen Grundlagen der Struktur eines
+Prozesses im Speicher bekannt sein. Diese werden im Detail
+in~\cite{Silberschatz2005} erklärt.
 
 Buffer Overflow Angriffe nutzen die Tatsache aus, dass bestimmte Befehle wie
-Beispielsweise \verb+gets+ Strings in einen Puffer schreiben, ohne die Größe
+beispielsweise \verb+gets+ Strings in einen Puffer schreiben, ohne die Größe
 des Puffers zu beachten. \verb+gets+ erhält als Parameter einen Zeiger auf die
 Startadresse des Puffers. Wenn der Benutzer eine längere Eingabe macht als der
 Puffer erlaubt, so wird in nachfolgende Speicherbereiche geschrieben. Dies kann

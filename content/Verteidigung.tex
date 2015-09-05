@@ -30,18 +30,30 @@ entfernt werden.
 Außerdem sollten laut Checkoway~et~al. die Diagnosegeräte Authentifizierung und
 Verschlüsselung wie beispielsweise OpenSSL nutzen.
 
+\section{Buffer Overflows}
 Gegen Buffer-Overflow-Angriffe können zum einen Sprachen wie Java oder Rust
 verwendet werden, welche die Einhaltung der Bereichsgrenzen automatisch
-überprüfen. Des weiteren kann anstelle der C-Funktion \verb+strcpy()+ die
+überprüfen. Des Weiteren kann anstelle der C-Funktion \verb+strcpy()+ die
 Funktion \verb+strncpy()+ verwendet werden, welche die Anzahl der zu
-schreibenden Zeichen begrenzt \cite{Eckert2012}. Ein weiteres Konzept zum
-Schutz vor Buffer-Overflow-Angriffen sind Stack Cookies \cite{Bray2002}.
+schreibenden Zeichen begrenzt~\cite{Eckert2012}.
 
-Code Reviews können auch solche Sicherheitslücken aufdecken \cite{Howard2006}.
+Ein weiteres Konzept zum Schutz vor Buffer-Overflow-Angriffen sind Stack
+Cookies~\cite{Bray2002}. Stack Cookies sind Werte die auf den Stack, direkt
+nach den Puffer geschrieben werden. Bevor der Sprung zurück in
+die aufrufende Funktion durchgeführt wird, wird die \verb+XOR+ Operation auf
+den Stack Cookie und die Rücksprungadresse ausgeführt. Der so errechnete Wert
+wird mit dem erwarteten Wert verglichen. Falls es eine Abweichung gibt wird
+nicht die \verb+RET+ Operation ausgeführt, sondern in eine Sicherheitsroutine
+gesprungen, die diesen Fall behandelt.
+
+
+
+\section{Code-Qualität}
+Code Reviews können solche Sicherheitslücken aufdecken~\cite{Howard2006}.
 Code Reviews können teilweise automatisch mit Werkzeugen zur statischen Code
-Analyse durchgeführt werden \cite{McGraw2008}.
+Analyse durchgeführt werden~\cite{McGraw2008}.
 
 Eine weiterer wichtiger Stützpfeiler für sichere Software sind schnell
-ausgelieferte Sicherheitsaktualisierungen. Dazu gehört laut \cite{Mahaffey2015}
+ausgelieferte Sicherheitsaktualisierungen. Dazu gehört laut~\cite{Mahaffey2015}
 unter anderem ein System zum mobilen versenden von Aktualisierungen an Autos
 mit Mobilfunkverbindung.
