@@ -113,7 +113,9 @@ Beispiel beobachtet werden:
 
 Kompiliert man dieses Programm mit
 \verb+gcc -O0 -fno-stack-protector -g simple.c -o simple+, so kann mit der
-Eingabe von 16~Zeichen die Variable \verb+pass+ überschrieben werden.
+Eingabe von 16~Zeichen die Variable \verb+pass+ überschrieben werden. In diesem
+Fall wird deshalb der passwortgeschützte Code-Abschnitt ausgeführt, selbst
+wenn das eingegebene Passwort fehlerhaft ist.
 
 Allerdings ist es nicht nur möglich interne Variablen zu überschreiben, sondern
 sogar beliebigen Code auszuführen. Dies wird in \cite{Mixter} mit einem sehr
@@ -128,6 +130,14 @@ Angreifer gefährdet, sondern auch die Software. Die folgenden Beispiele zeigen,
 dass Angriffe auf die IT in Automobilen nicht nur im akademischen Rahmen
 auf einige wenige spezielle Modelle durchgeführt werden, sondern dass auch
 modellübergreifende Angriffe möglich sind.
+
+Es gibt etliche Automobilhersteller, -marken und -modelle. Für viele Modelle
+gibt es unterschiedliche Konfigurationen und wiederum zahlreiche Optionen für
+Zubehör wie beispielsweise das Autoradio oder Navigationssysteme. Dies macht
+allgemeine Aussagen über konkrete Angriffe auf Automobile schwierig. Allerdings
+stellen Standards und Verordnungen (vgl. \cref{ch:standards}) sicher, dass
+Teile der relevanten Infrastruktur in Automobilen gleich sind, sodass Angreifer
+diese fahrzeugübergreifend nutzen können.
 
 Die Art der Angriffe ist nicht neu. So sind wurde mit dem Morris-Wurm bereits
 1988 ein Stack Overflow Angriff durchgeführt~\cite{Seltzer2013},
