@@ -5,17 +5,23 @@
 
 \begin{frame}[fragile]{Verteidigung}
     \begin{itemize}[<+->]
-        \item Wenig Elektronik? Getrennte Bus-Systeme?
-        \item Obfuscation: Debugging-Symbole entfernen um Reverse-Engineering
-              zu erschweren
-        \item Plausibilität von CAN-Nachrichten prüfen
-        \item Authentifizierung vor Software-Updates
-        \item Andere Sprachen (Java, Rust)
-        \item Besserer Code
+        \item Auto-Spezifisch
         \begin{itemize}
-            \item Code Reviews
-            \item Static Code Analysis
+            \item Weniger Elektronik? Getrennte Bus-Systeme?
+            \item Obfuscation: Debugging-Symbole entfernen um Reverse-Engineering
+                  zu erschweren
+            \item Plausibilität von CAN-Nachrichten prüfen
         \end{itemize}
-        \item Speizielles (Stack Cookies, \verb+strncpy()+ anstatt \verb+strcpy()+)
+        \item Allgemein
+        \begin{itemize}
+            \item Authentifizierung vor Software-Updates
+            \item Andere Sprachen (Java, Rust)
+            \item Besserer Code
+            \begin{itemize}
+                \item Code Reviews
+                \item Static Code Analysis
+            \end{itemize}
+            \item Speizielles (Stack Cookies, \verb+strncpy()+ anstatt \verb+strcpy()+)
+        \end{itemize}
     \end{itemize}
 \end{frame}
